@@ -13,10 +13,10 @@ Automatically orders dates for you so no need to worry about which is earliest. 
 
 
 
-Questions / Thanks
+Questions
 ===================
 
-Send me a tweet at [@jonhocking](http://twitter.comjonhocking) - I'd love to hear how you get on with this.
+Send me a tweet at [@jonhocking](http://twitter.com/jonhocking) - I'd love to hear how you get on with this.
 
 
 License
