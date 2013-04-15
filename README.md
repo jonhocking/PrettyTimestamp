@@ -6,6 +6,24 @@ An NSDate Category that returns human readable, pretty timestamps between two da
 Currently only available in english.
 
 
+
+
+Examples
+========
+
+All returned strings are in lower case and plural / singular handled
+
+"just now"
+
+"1 minute ago"
+
+"3 months ago"
+
+"over a year ago"
+
+
+
+
 Usage
 ======
 
@@ -17,6 +35,8 @@ Questions
 ===================
 
 Send me a tweet at [@jonhocking](http://twitter.com/jonhocking) - I'd love to hear how you get on with this.
+
+
 
 
 License

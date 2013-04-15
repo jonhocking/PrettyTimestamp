@@ -34,8 +34,22 @@
 
 @interface NSDate (PrettyTimestamp)
 
+/**
+ Helper method for timestamps between now and the date provided
+ @return lowercase string, see readme for examples
+ */
 + (NSString*)prettyTimestampSinceDate:(NSDate*)date;
+
+/**
+ Timestamp between now and the NSDate instance
+ @return lowercase string, see readme for examples
+ */
 - (NSString*)prettyTimestampSinceNow;
+
+/**
+ Timestamp between the date provided and the NSDate instance
+ @return lowercase string, see readme for examples
+ */
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date;
 
 @end
