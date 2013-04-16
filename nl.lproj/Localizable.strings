@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  PrettyTimestampTest
+
+  Created by Marga Keuvelaar on 4/16/13.
+  Copyright (c) 2013 Obvious Matter. All rights reserved.
+*/
+
+"minute" = "minuut";
+"minutes" = "minuten";
+"hour" = "uur";
+"hours" = "uur";
+"day" = "dag";
+"days" = "dagen";
+"week" = "week";
+"weeks" = "weken";
+"month" = "maand";
+"months" = "maanden";
+"ago" = "geleden";
+"over a year ago" = "meer dan een jaar geleden";
