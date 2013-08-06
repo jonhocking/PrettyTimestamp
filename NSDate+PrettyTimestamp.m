@@ -36,71 +36,47 @@
 
 + (NSString*)prettyTimestampSinceDate:(NSDate*)date
 {
-    return [[NSDate date] prettyTimestampSinceDate:date];
+  return [[NSDate date] prettyTimestampSinceDate:date];
 }
 
 - (NSString*)prettyTimestampSinceNow
 {
-    return [self prettyTimestampSinceDate:[NSDate date]];
+  return [self prettyTimestampSinceDate:[NSDate date]];
 }
 
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date
 {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
-    NSDate *earliest = [self earlierDate:date];
-    NSDate *latest = (earliest == self) ? date : self;
-    NSDateComponents *components = [calendar components:unitFlags fromDate:earliest toDate:latest options:0];
-    
-    if (components.year >= 1) {
-        return NSLocalizedString(@"over a year ago", nil);
-    }
-    if (components.month >= 1) {
-        if (components.month == 1) {
-            return [self stringForComponentValue:components.month withName:NSLocalizedString(@"month", nil)];
-        }
-        else{
-            return [self stringForComponentValue:components.month withName:NSLocalizedString(@"months", nil)];
-        }
-    }
-    if (components.week >= 1) {
-        if (components.week == 1) {
-            return [self stringForComponentValue:components.week withName:NSLocalizedString(@"week", nil)];
-        }
-        else {
-            return [self stringForComponentValue:components.week withName:NSLocalizedString(@"weeks", nil)];
-        }
-    }
-    if (components.day >= 1) {
-        if (components.day == 1) {
-            return [self stringForComponentValue:components.day withName:NSLocalizedString(@"day", nil)];
-        }
-        else {
-            return [self stringForComponentValue:components.day withName:NSLocalizedString(@"days", nil)];
-        }
-    }
-    if (components.hour >= 1) {
-        if (components.hour == 1) {
-            return [self stringForComponentValue:components.hour withName:NSLocalizedString(@"hour", nil)];
-        }
-        else {
-            return [self stringForComponentValue:components.hour withName:NSLocalizedString(@"hours", nil)];
-        }
-    }
-    if (components.minute >= 1) {
-        if (components.minute == 1) {
-            return [self stringForComponentValue:components.minute withName:NSLocalizedString(@"minute", nil)];
-        }
-        else {
-            return [self stringForComponentValue:components.minute withName:NSLocalizedString(@"minutes", nil)];
-        }
-    }
-    return NSLocalizedString(@"just now", nil);
+  NSCalendar *calendar = [NSCalendar currentCalendar];
+  NSUInteger unitFlags = NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
+  NSDate *earliest = [self earlierDate:date];
+  NSDate *latest = (earliest == self) ? date : self;
+  NSDateComponents *components = [calendar components:unitFlags fromDate:earliest toDate:latest options:0];
+  
+  if (components.year >= 1) {
+    return NSLocalizedString(@"over a year ago", nil);
+  }
+  if (components.month >= 1) {
+    return [self stringForComponentValue:components.month withName:@"month" andPlural:@"months"];
+  }
+  if (components.week >= 1) {
+    return [self stringForComponentValue:components.week withName:@"week" andPlural:@"weeks"];
+  }
+  if (components.day >= 1) {
+    return [self stringForComponentValue:components.day withName:@"day" andPlural:@"days"];
+  }
+  if (components.hour >= 1) {
+    return [self stringForComponentValue:components.hour withName:@"hour" andPlural:@"hours"];
+  }
+  if (components.minute >= 1) {
+    return [self stringForComponentValue:components.minute withName:@"minute" andPlural:@"minutes"];
+  }
+  return NSLocalizedString(@"just now", nil);
 }
 
-- (NSString*)stringForComponentValue:(NSInteger)componentValue withName:(NSString*)name
+- (NSString*)stringForComponentValue:(NSInteger)componentValue withName:(NSString*)name andPlural:(NSString*)plural
 {
-    return [NSString stringWithFormat:@"%d %@ %@", componentValue, name, NSLocalizedString(@"ago", nil)];
+  NSString *timespan = NSLocalizedString(componentValue == 1 ? name : plural, nil);
+  return [NSString stringWithFormat:@"%d %@ %@", componentValue, timespan, NSLocalizedString(@"ago", nil)];
 }
 
 @end
