@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
   s.name         = "PrettyTimestamp"
-  s.version      = "1.0"
-  s.summary      = "An NSDate Category that returns human readable, pretty timestamps between two dates. Currently only available in english."
+  s.version      = "1.1"
+  s.summary      = "An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with localisation."
   s.description  = <<-DESC
-                    An NSDate Category that returns human readable, pretty timestamps between two dates. Currently only available in english.
-
+                    An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with localisation with help from @Whakkee and @MatthewYork.
+                    
                     # Examples
 
-                    All returned strings are in lower case and plural / singular handled
+                    All returned strings are in lower case and plural / singular are handled
 
 "just now"
 
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.homepage     = "http://github.com/jonhocking/PrettyTimestamp"
   s.license      = 'MIT'
   s.author       = { "Jon Hocking" => "hello@jonhocking.co.uk" }
-  s.source       = { :git => "https://github.com/jonhocking/PrettyTimestamp.git", :tag => "v1.0" }
+  s.source       = { :git => "https://github.com/jonhocking/PrettyTimestamp.git", :tag => "v1.1" }
   s.source_files = '*.{h,m}'
   s.requires_arc = true
   s.platform     = :ios
