@@ -3,15 +3,13 @@ PrettyTimestamp
 
 An NSDate Category that returns human readable, pretty timestamps between two dates. 
 
-Currently only available in english.
-
-
+Now available with localisation thanks to @Whakkee and @MatthewYork.
 
 
 Examples
 ========
 
-All returned strings are in lower case and plural / singular handled
+All returned strings are in lower case and plural / singular are handled
 
 "just now"
 
