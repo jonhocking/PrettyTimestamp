@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "PrettyTimestamp"
-  s.version      = "1.1"
-  s.summary      = "An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with localisation."
+  s.version      = "1.2"
+  s.summary      = "An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with custom formatting."
   s.description  = <<-DESC
-                    An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with localisation with help from @Whakkee and @MatthewYork.
+                    An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with custom formatting thanks to Sam Dods.
                     
                     # Examples
 
@@ -21,7 +21,8 @@ Pod::Spec.new do |s|
   s.homepage     = "http://github.com/jonhocking/PrettyTimestamp"
   s.license      = 'MIT'
   s.author       = { "Jon Hocking" => "hello@jonhocking.co.uk" }
-  s.source       = { :git => "https://github.com/jonhocking/PrettyTimestamp.git", :tag => "v1.1" }
+  s.social_media_url = 'https://twitter.com/jonhocking'
+  s.source       = { :git => "https://github.com/jonhocking/PrettyTimestamp.git", :tag => "v1.2" }
   s.source_files = '*.{h,m}'
   s.requires_arc = true
   s.platform     = :ios
