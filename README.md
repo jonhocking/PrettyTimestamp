@@ -3,7 +3,7 @@ PrettyTimestamp
 
 An NSDate Category that returns human readable, pretty timestamps between two dates. 
 
-Now available with localisation thanks to @Whakkee and @MatthewYork.
+Now available with custom formatting thanks to [Sam Dods](https://github.com/samdods) 
 
 
 Examples
