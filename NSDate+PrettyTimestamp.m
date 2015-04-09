@@ -46,37 +46,52 @@
 
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date
 {
+  return [self prettyTimestampSinceDate:date withFormat:nil];
+}
+
+- (NSString*)prettyTimestampSinceDate:(NSDate*)date withFormat:(NSString *)format
+{
   NSCalendar *calendar = [NSCalendar currentCalendar];
   NSUInteger unitFlags = NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
   NSDate *earliest = [self earlierDate:date];
   NSDate *latest = (earliest == self) ? date : self;
   NSDateComponents *components = [calendar components:unitFlags fromDate:earliest toDate:latest options:0];
   
+  if (!format) {
+    format = @"%i %u %c";
+  }
+  
   if (components.year >= 1) {
     return NSLocalizedString(@"over a year ago", nil);
   }
   if (components.month >= 1) {
-    return [self stringForComponentValue:components.month withName:@"month" andPlural:@"months"];
+    return [self stringForComponentValue:components.month withName:@"month" andPlural:@"months" format:format];
   }
   if (components.week >= 1) {
-    return [self stringForComponentValue:components.week withName:@"week" andPlural:@"weeks"];
+    return [self stringForComponentValue:components.week withName:@"week" andPlural:@"weeks" format:format];
   }
   if (components.day >= 1) {
-    return [self stringForComponentValue:components.day withName:@"day" andPlural:@"days"];
+    return [self stringForComponentValue:components.day withName:@"day" andPlural:@"days" format:format];
   }
   if (components.hour >= 1) {
-    return [self stringForComponentValue:components.hour withName:@"hour" andPlural:@"hours"];
+    return [self stringForComponentValue:components.hour withName:@"hour" andPlural:@"hours" format:format];
   }
   if (components.minute >= 1) {
-    return [self stringForComponentValue:components.minute withName:@"minute" andPlural:@"minutes"];
+    return [self stringForComponentValue:components.minute withName:@"minute" andPlural:@"minutes" format:format];
   }
   return NSLocalizedString(@"just now", nil);
 }
 
-- (NSString*)stringForComponentValue:(NSInteger)componentValue withName:(NSString*)name andPlural:(NSString*)plural
+- (NSString*)stringForComponentValue:(NSInteger)componentValue withName:(NSString*)name andPlural:(NSString*)plural format:(NSString*)format
 {
   NSString *timespan = NSLocalizedString(componentValue == 1 ? name : plural, nil);
-  return [NSString stringWithFormat:@"%d %@ %@", componentValue, timespan, NSLocalizedString(@"ago", nil)];
+  
+  NSMutableString *output = format.mutableCopy;
+  [output replaceOccurrencesOfString:@"%i" withString:@(componentValue).stringValue options:0 range:NSMakeRange(0, output.length)];
+  [output replaceOccurrencesOfString:@"%u" withString:timespan options:0 range:NSMakeRange(0, output.length)];
+  [output replaceOccurrencesOfString:@"%c" withString:NSLocalizedString(@"ago", nil) options:0 range:NSMakeRange(0, output.length)];
+  
+  return output.copy;
 }
 
 @end
