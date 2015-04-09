@@ -52,4 +52,14 @@
  */
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date;
 
+/**
+ Timestamp between the date provided and the receiver, using the given format
+ @param date The date to compare to the receiver
+ @param format The format to print in. Format options are: %d for duration, e.g. "4"; %i for interval, e.g. "weeks"; %c for constant, e.g. "ago".
+ Any other characters in the format will be left untouched, i.e. they will appear in the output.
+ @note Use this method if you don't want the default format (e.g. "4 weeks ago"), for example, if you don't want spaces between the components, or if you want to add other decorative text.
+ @return lowercase string in the given format, see readme for examples
+ */
+- (NSString*)prettyTimestampSinceDate:(NSDate*)date withFormat:(NSString *)format;
+
 @end
