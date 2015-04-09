@@ -46,7 +46,7 @@
 
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date
 {
-  return [self prettyTimestampSinceDate:date withFormat:@"%d %i %c"]; // format is e.g. "4 weeks ago"
+  return [self prettyTimestampSinceDate:date withFormat:nil];
 }
 
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date withFormat:(NSString *)format
@@ -56,6 +56,10 @@
   NSDate *earliest = [self earlierDate:date];
   NSDate *latest = (earliest == self) ? date : self;
   NSDateComponents *components = [calendar components:unitFlags fromDate:earliest toDate:latest options:0];
+  
+  if (!format) {
+    format = @"%i %u %c";
+  }
   
   if (components.year >= 1) {
     return NSLocalizedString(@"over a year ago", nil);
@@ -81,8 +85,10 @@
 - (NSString*)stringForComponentValue:(NSInteger)componentValue withName:(NSString*)name andPlural:(NSString*)plural format:(NSString*)format
 {
   NSString *timespan = NSLocalizedString(componentValue == 1 ? name : plural, nil);
-  [output replaceOccurrencesOfString:@"%d" withString:@(componentValue).stringValue options:0 range:NSMakeRange(0, output.length)];
-  [output replaceOccurrencesOfString:@"%i" withString:timespan options:0 range:NSMakeRange(0, output.length)];
+  
+  NSMutableString *output = format.mutableCopy;
+  [output replaceOccurrencesOfString:@"%i" withString:@(componentValue).stringValue options:0 range:NSMakeRange(0, output.length)];
+  [output replaceOccurrencesOfString:@"%u" withString:timespan options:0 range:NSMakeRange(0, output.length)];
   [output replaceOccurrencesOfString:@"%c" withString:NSLocalizedString(@"ago", nil) options:0 range:NSMakeRange(0, output.length)];
   
   return output.copy;
