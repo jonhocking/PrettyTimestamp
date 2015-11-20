@@ -52,7 +52,7 @@
 - (NSString*)prettyTimestampSinceDate:(NSDate*)date withFormat:(NSString *)format
 {
   NSCalendar *calendar = [NSCalendar currentCalendar];
-  NSUInteger unitFlags = NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
+  NSUInteger unitFlags = NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitWeekOfYear | NSCalendarUnitMonth | NSCalendarUnitYear;
   NSDate *earliest = [self earlierDate:date];
   NSDate *latest = (earliest == self) ? date : self;
   NSDateComponents *components = [calendar components:unitFlags fromDate:earliest toDate:latest options:0];
@@ -67,8 +67,8 @@
   if (components.month >= 1) {
     return [self stringForComponentValue:components.month withName:@"month" andPlural:@"months" format:format];
   }
-  if (components.week >= 1) {
-    return [self stringForComponentValue:components.week withName:@"week" andPlural:@"weeks" format:format];
+  if (components.weekOfYear >= 1) {
+    return [self stringForComponentValue:components.weekOfYear withName:@"week" andPlural:@"weeks" format:format];
   }
   if (components.day >= 1) {
     return [self stringForComponentValue:components.day withName:@"day" andPlural:@"days" format:format];
