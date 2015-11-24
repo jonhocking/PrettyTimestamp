@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "PrettyTimestamp"
-  s.version      = "1.2"
+  s.version      = "1.2.1"
   s.summary      = "An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with custom formatting."
   s.description  = <<-DESC
                     An NSDate Category that returns human readable, pretty timestamps between two dates. Now available with custom formatting thanks to Sam Dods.
-                    
+
                     # Examples
 
                     All returned strings are in lower case and plural / singular are handled
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.author       = { "Jon Hocking" => "hello@jonhocking.co.uk" }
   s.social_media_url = 'https://twitter.com/jonhocking'
-  s.source       = { :git => "https://github.com/jonhocking/PrettyTimestamp.git", :tag => "v1.2" }
+  s.source       = { :git => "https://github.com/jonhocking/PrettyTimestamp.git", :tag => "v1.2.1" }
   s.source_files = '*.{h,m}'
   s.requires_arc = true
   s.platform     = :ios
